@@ -1,69 +1,19 @@
-# Brainwave Classifier
+# EEG Auditory Stimulation Analysis
 
-This project generates synthetic EEG-like time series data, extracts frequency-band features with FFT (Fast Fourier Transform), and trains a Random Forest model to classify listening conditions.
+This project investigates the correlation between auditory environments (Nature, White Noise, City) and prefrontal cortex neural activity using spectral analysis. 
 
-## Overview
-1. Generate synthetic two-channel EEG-like samples for `Nature`, `WhiteNoise`, and `City` conditions.
-2. Save the generated samples to `eeg_timeseries.csv`.
-3. Split the time series into 1-second windows.
-4. Compute Delta, Theta, Alpha, and Beta power features for each window.
-5. Train and evaluate a reproducible Random Forest classifier.
+## Methodology
+Data is processed using Fast Fourier Transform (FFT) to extract spectral power from specific frequency bands (Alpha, Beta, Theta). A Random Forest classifier is employed to predict the auditory environment based on neural signatures.
 
-## Requirements
+## Data Structure
+- `Time`: Sampling index.
+- `Channel[1-3]`: EEG signal in µV.
+- `Condition`: Exposure state (Nature, WhiteNoise, City).
 
-Install packages:
+## Setup & Running
+1. Ensure dependencies are installed: `pip install pandas numpy scikit-learn`.
+2. Generate synthetic data (if needed): `python generate_data.py`.
+3. Train and evaluate the model: `python train_model.py`.
 
-```bash
-pip install -r requirements.txt
-```
-
-**requirements.txt**
-```text
-pandas
-numpy
-matplotlib
-scikit-learn
-```
-
-
-## Run the Script
-
-```bash
-python3 main.py
-```
-
-You’ll get:
-
-- A regenerated `eeg_timeseries.csv` file
-- Console output with the model accuracy
-
-Example output:
-
-```text
-Initializing pipeline...
-Data generated and saved to eeg_timeseries.csv
-Pipeline execution complete. Model Accuracy: 1.00
-```
-
-## Project Files
-
-- `main.py` runs the complete pipeline.
-- `eeg_data_generator.py` creates synthetic EEG-like data and returns it as a DataFrame.
-- `signal_proc.py` extracts frequency-band features without running training code on import.
-- `model_engine.py` trains and evaluates the classifier.
-- `eeg_timeseries.csv` is generated data and may change when the pipeline runs.
-
-## Data Notice
-
-The CSV uses synthetic (fake) EEG-like values for demonstration.
-Do not upload real EEG data from participants or experiments publicly.
-
-## Learning Value
-
-- Data preprocessing and feature extraction
-- Frequency analysis with FFT
-- Machine learning model training and evaluation
-- Reproducible train/test evaluation
-
-## Author
-Jawad Azeem
+## References
+Azeem, J., & Malik, S. (2025). The Effect of Auditory Stimulation on Prosocial Decision-Making and EEG Brain Activity Using the Keep or Share Method.
